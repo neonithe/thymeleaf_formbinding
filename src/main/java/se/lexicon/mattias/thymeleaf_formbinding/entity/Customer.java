@@ -34,7 +34,16 @@ public class Customer {
     public Customer() {
     }
 
+
     public Customer(String name, String email, CustomerDetails details) {
+        this.regDate = LocalDate.now();
+        this.active = true;
+        this.name = name;
+        this.email = email;
+        this.details = details;
+    }
+
+    public Customer(Integer customerId, String name, String email, CustomerDetails details) {
         /** Generate ID **/
         this.customerId = customerId;
 
@@ -47,6 +56,7 @@ public class Customer {
         this.email = email;
         this.details = details;
     }
+
 
     /** Getters and setters **/
 
