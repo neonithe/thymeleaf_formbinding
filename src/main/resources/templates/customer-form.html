@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- For adding Bootstrap in you HTML file -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <title>Details</title>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="container">
+    <nav th:replace = "navbar.html :: navigation" ></nav>
+</div>
+<br>
+
+<!-- CONTENT BEGIN-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+
+            <form th:action="@{#}" method="post" th:object="${form}">
+
+            <input class="form-control" type="email" id="email" th:field="*{email}" >
+
+        <div th:if="${#fields.hasErrors('email')}">
+            <ul>
+                <li th:each="err: ${#fields.errors('email')}">
+                    <span th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn btn-primary btn-sm" type="submit">Save customer</button>
+    </form>
+</div>
+
+<!-- CONTENT END-->
+
+</body>
+</html>

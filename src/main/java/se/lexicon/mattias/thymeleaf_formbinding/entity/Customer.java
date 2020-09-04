@@ -87,7 +87,7 @@ public class Customer {
     public void setActive(boolean active) {
         this.active = active;
     }
-/**
+
     public CustomerDetails getDetails() {
         return details;
     }
@@ -95,7 +95,7 @@ public class Customer {
     public void setDetails(CustomerDetails details) {
         this.details = details;
     }
-**/
+
     public String getName() {
         return name;
     }

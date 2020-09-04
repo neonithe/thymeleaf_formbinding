@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- For adding Bootstrap in you HTML file -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <title>Customer database</title>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="container">
+    <nav th:replace = "navbar.html :: navigation" ></nav>
+</div>
+<br>
+
+<!-- CONTENT BEGIN-->
+
+<div class="container">
+    <h2>Student database</h2>
+    <div>
+        <!-- Add a add student button -->
+        <a th:href="@{#}"
+           class="btn btn-outline-primary btn-sm mb-3 float-left">
+            Add customer
+        </a>
+    </div>
+
+    <div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Registration date</th>
+                <th>Active</th>
+                <th>Details</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customerList}">
+                <td th:text="${customer.getCustomerId()}"     width="5%"></td>
+                <td th:text="${customer.getName()}"     width="20%"></td>
+                <td th:text="${customer.getEmail()}"    width="20%"></td>
+                <td th:text="${customer.getRegDate()}"  width="20%"></td>
+                <td th:text="${customer.isActive()}"    width="5%"></td>
+                <td width="15%">
+                    <!-- Add Delete button/link -->
+                    <a th:href=" @{ /customer/getdetails( customerId = ${ customer.getCustomerId() } ) } "
+                       class="btn btn-outline-danger btn-sm">
+                       Details
+                    </a>
+                </td>
+                <td width="15%">
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- CONTENT END -->
+
+<!-- Footer -->
+<div class="container">
+    <footer th:replace = "footer.html :: footer"></footer>
+</div>
+
+</body>
+</html>
