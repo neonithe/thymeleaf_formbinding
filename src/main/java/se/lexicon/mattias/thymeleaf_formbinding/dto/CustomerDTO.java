@@ -19,8 +19,8 @@ public class CustomerDTO {
     /** REGEX - Input rules **/
     public static final String EMAIL_RULE       = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$";
     public static final String ZIPCODE_RULE     = "^\\d{5}(-\\d{4})?$";
-    public static final String HOMEPHONE_RULE   = "^[0-9- ]{0,9}$";
-    public static final String MOBILE_RULE      = "^[0-9- ]{0,10}$";
+    public static final String HOMEPHONE_RULE   = "^[0-9- ]{0,10}$";
+    public static final String MOBILE_RULE      = "^[0-9- ]{0,11}$";
 
 
     /** Data Transfer Object **/
@@ -36,16 +36,18 @@ public class CustomerDTO {
     @Size(min = 1, max = 100, message = STREET_ERROR)
     private String street;
 
-    @Pattern(regexp = ZIPCODE_RULE, message = ZIPCODE_ERROR, flags = Pattern.Flag.CASE_INSENSITIVE)
+    //@Pattern(regexp = ZIPCODE_RULE, message = ZIPCODE_ERROR, flags = Pattern.Flag.CASE_INSENSITIVE)
     private String zipCode;
 
+    @NotBlank(message = "Is required")
     @Size(min = 1, max = 100, message = CITY_ERROR)
     private String city;
 
     @Pattern(regexp = HOMEPHONE_RULE, message = HOMEPHONE_ERROR, flags = Pattern.Flag.CASE_INSENSITIVE)
     private String homePhone;
 
-    @Pattern(regexp = MOBILE_RULE, message = MOBILE_RULE, flags = Pattern.Flag.CASE_INSENSITIVE)
+    @NotBlank(message = "Is required")
+    @Pattern(regexp = MOBILE_RULE, message = MOBILE_ERROR, flags = Pattern.Flag.CASE_INSENSITIVE)
     private String mobile;
 
 
@@ -105,5 +107,18 @@ public class CustomerDTO {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", street='" + street + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
     }
 }

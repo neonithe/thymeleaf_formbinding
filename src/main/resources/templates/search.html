@@ -11,53 +11,29 @@
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
-    <title>Customer database</title>
-
+    <title>Search</title>
 </head>
-<body>
 
+<body>
 <!-- Navigation -->
 <div class="container">
     <nav th:replace = "navbar.html :: navigation" ></nav>
 </div>
 <br>
-
 <!-- CONTENT BEGIN-->
 
 <div class="container">
-
-    <h2>Customer database</h2>
-    <br>
     <div>
-        <!-- Add a add student button -->
-        <a th:href="@{/customer/create}"
-           class="btn btn-outline-success btn-sm mb-3 float-left">
-            Add customer
-        </a>
-        <!-- Add a search button -->
-        <a th:href="@{/customer/search}"
-           class="btn btn-outline-info btn-sm mb-3 float-right">
-            Search
-        </a>
-        <!-- Add a reset button -->
-        <a th:href="@{/customer/sortId}"
-           class="btn btn-outline-info btn-sm mb-3 mr-3 float-right">
-            Reset
-        </a>
-        <div class="btn-group float-right">
-            <button class="btn btn-outline-info btn-sm mb-3 mr-3 dropdown-toggle col-10" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort list
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" th:href="@{/customer/sortNameDesc}">Sort name Descending</a>
-                <a class="dropdown-item" th:href="@{/customer/sortNameAsc}">Sort name Ascsending</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" th:href="@{/customer/sortActive}">Sort by Active</a>
-                <a class="dropdown-item" th:href="@{/customer/sortDeactive}">Sort by Deactive</a>
-            </div>
-        </div>
-    </div>
+        <form action="#" th:action="@{/customer/search}" method="GET">
 
+            <input type="text" th:name="input"
+                   class="form-control mb-2 col-12" placeholder="Search">
+
+            <button type="submit" class="btn btn-info col-2">Search</button>
+
+        </form>
+    </div>
+    <br>
     <div>
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -74,7 +50,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="customer : ${customerList}">
+            <tr th:each="customer : ${resultvalue}">
                 <td th:text="${customer.getCustomerId()}"   width="5%"></td>
                 <td th:text="${customer.getName()}"         width="20%"></td>
                 <td th:text="${customer.getEmail()}"        width="20%"></td>
@@ -82,17 +58,16 @@
                 <td th:text="${customer.isActive()}"        width="5%"></td>
                 <td width="5%">
 
-                    <!-- Deactivate button -->
+                    <!-- Deactivate button - get details about customer -->
                     <a th:href=" @{ /customer/active( customerId = ${ customer.getCustomerId() } ) } "
-                       class="btn btn-outline-warning btn-sm"
-                       onclick="if (!(confirm('Are you sure you want to (de)activate this customer?'))) return false">
-                       (De)Activate
+                       class="btn btn-outline-warning btn-sm">
+                        (De)Activate
                     </a>
 
                 </td>
                 <td width="5%">
 
-                    <!-- Details button  -->
+                    <!-- Details button - get details about customer -->
                     <a th:href=" @{ /customer/getdetails( customerId = ${ customer.getCustomerId() } ) } "
                        class="btn btn-outline-info btn-sm">
                         Details
@@ -101,7 +76,7 @@
                 </td>
                 <td width="5%">
 
-                    <!-- Update button  -->
+                    <!-- Update button - get details about customer -->
                     <a th:href=" @{ /customer/update( customerId = ${ customer.getCustomerId() } ) } "
                        class="btn btn-outline-info btn-sm">
                         Update
@@ -110,10 +85,9 @@
                 </td>
                 <td width="5%">
 
-                    <!-- Delete button  -->
+                    <!-- Delete button - get details about customer -->
                     <a th:href=" @{ /customer/delete( customerId = ${ customer.getCustomerId() } ) } "
-                       class="btn btn-outline-danger btn-sm"
-                        onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">
+                       class="btn btn-outline-danger btn-sm">
                         Delete
                     </a>
 

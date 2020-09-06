@@ -11,7 +11,7 @@
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
-    <title>Details</title>
+    <title>Add customer</title>
 
 </head>
 <body>
@@ -26,25 +26,129 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4">
+        <div class="col-8">
+            <h3>Add customer</h3>
+            <hr>
 
-            <form th:action="@{#}" method="post" th:object="${form}">
+            <form th:action="@{/customer/save}" method="post" th:object="${customerCreate}">
 
-            <input class="form-control" type="email" id="email" th:field="*{email}" >
+                <!-- Name -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="name" placeholder="Name *" th:field="*{name}">
 
-        <div th:if="${#fields.hasErrors('email')}">
-            <ul>
-                <li th:each="err: ${#fields.errors('email')}">
-                    <span th:text="${err}"></span>
-                </li>
-            </ul>
+                <!-- Error Name -->
+                <div th:if="${#fields.hasErrors('name')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('name')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!-- Email -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="email" placeholder="Email *" th:field="*{email}">
+
+                <!-- Error Email -->
+                <div th:if="${#fields.hasErrors('email')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('email')}"><span th:text="${err}"></span>
+                        </li>
+
+                    </ul>
+                </div>
+                <br>
+                <!-- Street -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="street" placeholder="Street *" th:field="*{street}">
+
+                <!-- Error Street -->
+                <div th:if="${#fields.hasErrors('street')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('street')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!-- ZipCode -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="zipCode" placeholder="ZipCode *" th:field="*{zipCode}">
+
+                <!-- Error Zipcode -->
+                <div th:if="${#fields.hasErrors('zipCode')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('zipCode')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!-- City -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="city" placeholder="City *" th:field="*{city}">
+
+                <!-- Error City -->
+                <div th:if="${#fields.hasErrors('city')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('city')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!-- Homephone -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="homePhone" placeholder="Home phone *" th:field="*{homePhone}">
+
+                <!-- Error HomePhone -->
+                <div th:if="${#fields.hasErrors('homePhone')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('homePhone')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <!-- Mobile -->
+                <input class="form-control mb-0 col-12"
+                       type="text" id="mobile" placeholder="Mobile *" th:field="*{mobile}">
+
+                <!-- Error Mobile -->
+                <div th:if="${#fields.hasErrors('mobile')}">
+                    <ul class="list-group list-group-flush" >
+
+                        <li class="list-group-item list-group-item-danger"
+                            th:each="err: ${#fields.errors('mobile')}"><span th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                <button class="btn btn-outline-success btn-sm mb-0 mr-3" type="submit">Save customer</button>
+                <button class="btn btn-outline-dark btn-sm mb-0 mr-3" type="reset">Clear fields</button>
+            </form>
         </div>
-
-        <button class="btn btn-primary btn-sm" type="submit">Save customer</button>
-    </form>
+        <div>
+            <div class="col-16">
+                <h3>Info</h3>
+                <hr>
+                <p>All field with ( * ) in it must be filled in</p>
+                <hr>
+                <p th:text="${ id }"></p>
+            </div>
+        </div>
+    </div>
 </div>
-
 <!-- CONTENT END-->
+
+
 
 </body>
 </html>
