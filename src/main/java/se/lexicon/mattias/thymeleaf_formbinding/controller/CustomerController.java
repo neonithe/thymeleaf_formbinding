@@ -182,7 +182,7 @@ public class CustomerController {
     }
 
 
-    /** Sorting the list of customers, search and (De)active **************************************************************/
+    /** Sorting the list of customers, search and (De)active **********************************************************/
 
      @GetMapping("/sortActive")
      public String active(Model model) {
@@ -244,7 +244,7 @@ public class CustomerController {
         return "customer-view.html";
     }
 
-
+    // String input must be the same in HTML th:name="input" (that is how it's find the varible)
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String input, Model model) {
 
@@ -254,8 +254,6 @@ public class CustomerController {
             customerList = dao.findAllByEmail(input);
         }
         model.addAttribute("resultvalue", customerList);
-
-        System.out.println(input);
 
         return "search.html";
     }
